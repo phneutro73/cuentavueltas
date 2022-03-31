@@ -214,15 +214,12 @@ void loop() {
     }
   }  
   
-  parcialAux = calculaTiempo(parcial, tiempoFinal);
+
 
   tiempo3 = calculaTiempo(tiempoInicio, tiempoFinal);
 
-  if (parcialAux > 900){ 
-    lcd3.clear();
-    pintarTiempo(tiempo3); //Este es el reloj de la carrera y se imprime cada décima de segundo por el delay de abajo
-    parcial = millis();
-  }
+  pintarTiempo(tiempo3); //Este es el reloj de la carrera y se imprime cada décima de segundo por el delay de abajo
+  parcial = millis();
 
   delay(100); //El loop se ejecuta cada décima de segundo
   tiempoFinal = millis();

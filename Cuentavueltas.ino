@@ -1,6 +1,10 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 
+#define NOTE_C5  523
+#define NOTE_C6  1047
+
+#define SPEAKER_PIN 8
 
 LiquidCrystal_I2C lcd1(0x27, 16, 2);
 LiquidCrystal_I2C lcd2(0x28, 16, 2);
@@ -67,6 +71,8 @@ byte LMB[8] =
 {B11111,B00000,B00000,B00000,B00000,B11111,B11111,B11111};
 
 void setup() {
+  pinMode(SPEAKER_PIN, OUTPUT);
+  
   pinMode(semaforo1, OUTPUT);
   pinMode(semaforo2, OUTPUT);
   pinMode(semaforo3, OUTPUT);
@@ -116,19 +122,19 @@ void setup() {
   lcd1.setCursor(1, 0);
   lcd1.print("Cuentavueltas");
   lcd1.setCursor(5, 1);
-  lcd1.print("v 2.0");
+  lcd1.print("v 3.0");
 
   lcd2.clear();
   lcd2.setCursor(1, 0);
   lcd2.print("Cuentavueltas");
   lcd2.setCursor(5, 1);
-  lcd2.print("v 2.0");
+  lcd2.print("v 3.0");
 
   lcd3.clear();
   lcd3.setCursor(1, 0);
   lcd3.print("Cuentavueltas");
   lcd3.setCursor(5, 1);
-  lcd3.print("v 2.0");
+  lcd3.print("v 3.0");
   
   delay(2000);
   
@@ -151,7 +157,10 @@ void loop() {
     lcd2.setCursor(0, 1);
     lcd1.print(" =(RESETEANDO)=");
     lcd2.print(" =(RESETEANDO)=");
-    delay(3000);
+    tone(SPEAKER_PIN, NOTE_C6);
+    delay(500);
+    noTone(SPEAKER_PIN);
+    delay(2500);
 
     salida();
    
@@ -237,15 +246,30 @@ void salida() {
   delay(3000);
   
   digitalWrite(semaforo1, HIGH);
-  delay(1000);
+  tone(SPEAKER_PIN, NOTE_C5);
+  delay(500);
+  noTone(SPEAKER_PIN);
+  delay(500);
   digitalWrite(semaforo2, HIGH);
-  delay(1000);
+  tone(SPEAKER_PIN, NOTE_C5);
+  delay(500);
+  noTone(SPEAKER_PIN);
+  delay(500);
   digitalWrite(semaforo3, HIGH);
-  delay(1000);
+  tone(SPEAKER_PIN, NOTE_C5);
+  delay(500);
+  noTone(SPEAKER_PIN);
+  delay(500);
   digitalWrite(semaforo4, HIGH);
-  delay(1000);
+  tone(SPEAKER_PIN, NOTE_C5);
+  delay(500);
+  noTone(SPEAKER_PIN);
+  delay(500);
   digitalWrite(semaforo5, HIGH);
-  delay(1000);
+  tone(SPEAKER_PIN, NOTE_C6);
+  delay(500);
+  noTone(SPEAKER_PIN);
+  delay(500);
   
   digitalWrite(semaforo1, LOW);
   digitalWrite(semaforo2, LOW);
